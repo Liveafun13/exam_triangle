@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Калькулятор</title>
+</head> 
+<body>
+    <header>
+        <div class="container">
+            <h1 style="color: #00FF00;">Выполнил: Якушин Д.</h1>
+            <h1 style="color: #00FF00;">Калькулятор площади для треугольника по 3 сторонам</h1>
+        </div> 
+    </header>
+    <main>
+        <div class="container">
+<br>
+        <form action="" >
+            <div class="form-input">
+                <label for="rebro1">Ребро А</label>
+                <input type="text" name="" id="rebro1" style="font-size: 16px;">
+            </div>
+            <div class="form-input">
+                <label for="rebro2">Ребро B</label>
+                <input type="text" name="" id="rebro2" style="font-size: 16px;">
+            </div>
+            <div class="form-input">
+                <label for="rebro2">Ребро С</label>
+                <input type="text" name="" id="rebro3" style="font-size: 16px;">
+            </div>
+            <button class="calcSquareBtn">Вычислить площадь</button>
+            <button type="reset" class="resetBtn">Сбросить</button>
+            <p class="out">Площадь: <span class="squareValue"></span></p>
+        </form>
+    </div>
+    </main>
+    <footer></footer>
+    <script>
+        const calcSquare = (a,b,c) => {
+        if (Number(a) > Number(b) + Number(c) || Number(b) > Number(a) + Number(c) || Number(c) > Number(a) + Number(b)) {
+            return "Треугольник не существует";
+        }
+        else{
+            const p = (Number(a) + Number(b) + Number(c)) / 2;
+            return (p * (p - Number(a)) * (p - Number(b)) * (p - Number(c))) ** 0.5;
+        }
+      }
+        const squareBtn = document.querySelector('.calcSquareBtn');
+        const squareValue = document.querySelector('.squareValue');
+
+        squareBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const rebro1 = document.querySelector('#rebro1').value;
+            const rebro2 = document.querySelector('#rebro2').value;
+            const rebro3 = document.querySelector('#rebro3').value;
+            if(!rebro1) {
+                alert('Введите А');
+            } 
+            else if(!rebro2) {
+                alert('Введите B');
+            }
+            else if(!rebro3) {
+                alert('Введите C');
+            }
+            else {
+                const result = calcSquare(rebro1,rebro2,rebro3);
+                squareValue.textContent = result;
+            }  
+        })
+        const resetBtn = document.querySelector('.resetBtn');
+        resetBtn.addEventListener('click', () => {
+            squareValue.textContent = 0;
+        })
+
+    </script>
+</body>
+
+</html>
